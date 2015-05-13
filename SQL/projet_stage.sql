@@ -1,9 +1,10 @@
+--jbrach02
 -- phpMyAdmin SQL Dump
 -- version 4.1.11
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 13 Mai 2015 à 14:04
+-- Généré le :  Mer 13 Mai 2015 à 16:09
 -- Version du serveur :  5.5.41-0+wheezy1
 -- Version de PHP :  5.4.36-0+deb7u3
 
@@ -216,7 +217,9 @@ CREATE TABLE IF NOT EXISTS `sta_ues` (
   `sup2` tinyint(1) NOT NULL,
   `obligatoire` tinyint(1) NOT NULL,
   `coefUE` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
+  `semestres_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `semestres_id` (`semestres_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -306,6 +309,12 @@ ALTER TABLE `sta_semestres`
 ALTER TABLE `sta_types_notes_ues`
   ADD CONSTRAINT `sta_types_notes_ues_ibfk_2` FOREIGN KEY (`ues_id`) REFERENCES `sta_ues` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `sta_types_notes_ues_ibfk_1` FOREIGN KEY (`types_notes_id`) REFERENCES `sta_types_notes` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `sta_ues`
+--
+ALTER TABLE `sta_ues`
+  ADD CONSTRAINT `sta_ues_ibfk_1` FOREIGN KEY (`semestres_id`) REFERENCES `sta_semestres` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
