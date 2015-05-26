@@ -1,10 +1,9 @@
---jbrach02
 -- phpMyAdmin SQL Dump
 -- version 4.1.11
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 13 Mai 2015 à 16:09
+-- Généré le :  Mar 26 Mai 2015 à 09:55
 -- Version du serveur :  5.5.41-0+wheezy1
 -- Version de PHP :  5.4.36-0+deb7u3
 
@@ -29,9 +28,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `sta_annees` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `diplome` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `description` varchar(100) CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`id`)
+  `semestres_id` int(10) NOT NULL,
+  `annee1` year(4) NOT NULL,
+  `annee2` year(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `semestres_id` (`semestres_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -50,6 +51,19 @@ CREATE TABLE IF NOT EXISTS `sta_annees_etudiants` (
   PRIMARY KEY (`id`),
   KEY `etudiants_id` (`etudiants_id`),
   KEY `annees_id` (`annees_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sta_diplomes`
+--
+
+CREATE TABLE IF NOT EXISTS `sta_diplomes` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `diplome` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `description` varchar(100) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -169,9 +183,10 @@ CREATE TABLE IF NOT EXISTS `sta_responsables` (
 CREATE TABLE IF NOT EXISTS `sta_semestres` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `numSem` int(10) NOT NULL,
-  `annees_id` int(10) NOT NULL,
+  `diplomes_id` int(10) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `annees_id` (`annees_id`)
+  KEY `annees_id` (`diplomes_id`),
+  KEY `diplomes_id` (`diplomes_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -243,6 +258,12 @@ CREATE TABLE IF NOT EXISTS `sta_users` (
 --
 
 --
+-- Contraintes pour la table `sta_annees`
+--
+ALTER TABLE `sta_annees`
+  ADD CONSTRAINT `sta_annees_ibfk_1` FOREIGN KEY (`semestres_id`) REFERENCES `sta_semestres` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `sta_annees_etudiants`
 --
 ALTER TABLE `sta_annees_etudiants`
@@ -301,7 +322,7 @@ ALTER TABLE `sta_responsables`
 -- Contraintes pour la table `sta_semestres`
 --
 ALTER TABLE `sta_semestres`
-  ADD CONSTRAINT `sta_semestres_ibfk_1` FOREIGN KEY (`annees_id`) REFERENCES `sta_annees` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `sta_semestres_ibfk_1` FOREIGN KEY (`diplomes_id`) REFERENCES `sta_diplomes` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `sta_types_notes_ues`
