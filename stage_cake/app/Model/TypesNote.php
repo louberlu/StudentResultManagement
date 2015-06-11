@@ -30,6 +30,8 @@
  */
    class TypesNote extends AppModel
    {
+      public $displayField = 'name';
+      
       public $hasMany = array(
          'TypesNotesUes',
          'EtudiantsTypesNotesUe'

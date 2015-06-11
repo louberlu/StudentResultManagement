@@ -30,6 +30,8 @@
  */
    class Diplome extends AppModel
    {
+      public $displayField = 'diplome';
+      
       public $hasMany = 'Semestre';
    }
 ?>

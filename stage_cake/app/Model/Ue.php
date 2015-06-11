@@ -30,6 +30,8 @@
  */
    class Ue extends AppModel
    {
+      public $displayField = 'name';
+      
       public $belongsTo = 'Semestre';
       
       public $hasMany = array(
