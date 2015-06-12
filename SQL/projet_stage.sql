@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 12 Juin 2015 à 16:48
+-- Généré le :  Ven 12 Juin 2015 à 16:56
 -- Version du serveur :  5.5.41-0+wheezy1
 -- Version de PHP :  5.4.36-0+deb7u3
 
@@ -107,7 +107,7 @@ DROP TABLE IF EXISTS `sta_etudiants`;
 CREATE TABLE IF NOT EXISTS `sta_etudiants` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT,
   `numero` varchar(50) NOT NULL,
-  `remarque` longtext NOT NULL,
+  `remarque` longtext,
   `dateNaissance` date NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `numero` (`numero`)
