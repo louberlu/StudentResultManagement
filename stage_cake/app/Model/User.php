@@ -38,5 +38,31 @@
             'dependent' => true
          )
       );
+      
+      public $validate = array(
+         'firstname' => array(
+            'rule' => array('lengthBetween',1,50),
+            'message' => 'Entre 1 et 50 caractères'
+         ),
+         'lastname' => array(
+            'rule' => array('lengthBetween',1,50),
+            'message' => 'Entre 1 et 50 caractères'
+         ),
+         'username' => array(
+            'alphaNumeric' => array(
+               'rule' => 'alphaNumeric',
+               'required' > true,
+               'message' => 'Lettre et nombre seulement'
+            ),
+            'between' => array(
+               'rule' => array('lengthBetween',5,32),
+               'message' => 'Entre 5 et 32 caractères'
+            ),
+         ),
+         'password' => array(
+            'rule' => array('minLength', '8'),
+            'message' => 'Au moins une longueur de 8 caractères'
+         )
+      );
    }
 ?>

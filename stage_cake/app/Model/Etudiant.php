@@ -44,5 +44,21 @@
          'EtudiantsTypesNotesUe',
          'AnneesEtudiants'
       );
+      
+      public $validate = array(
+         'numero' => array(
+            'rule' => array('lengthBetween',5,50),
+            'message' => 'Entre 5 et 50 caractères'
+         ),
+         'remarque' => array(
+            'rule' => array('lengthBetween',0,500),
+            'message' => 'Ne pas dépasser 500',
+            'allowEmpty' => true
+         ),
+         'dateNaissance' => array(
+            'rule' => 'date',
+            'message' => 'Donnez une date valide'
+         )
+      );
    }
 ?>
