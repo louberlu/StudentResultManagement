@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 03 Juin 2015 à 16:07
+-- Généré le :  Ven 12 Juin 2015 à 16:48
 -- Version du serveur :  5.5.41-0+wheezy1
 -- Version de PHP :  5.4.36-0+deb7u3
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `sta_annees`
 --
 
+DROP TABLE IF EXISTS `sta_annees`;
 CREATE TABLE IF NOT EXISTS `sta_annees` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `semestre_id` int(10) NOT NULL,
@@ -41,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `sta_annees` (
 -- Structure de la table `sta_annees_etudiants`
 --
 
+DROP TABLE IF EXISTS `sta_annees_etudiants`;
 CREATE TABLE IF NOT EXISTS `sta_annees_etudiants` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `moyAn` float NOT NULL,
@@ -59,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `sta_annees_etudiants` (
 -- Structure de la table `sta_diplomes`
 --
 
+DROP TABLE IF EXISTS `sta_diplomes`;
 CREATE TABLE IF NOT EXISTS `sta_diplomes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `diplome` varchar(50) NOT NULL,
@@ -72,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `sta_diplomes` (
 -- Structure de la table `sta_enseignants`
 --
 
+DROP TABLE IF EXISTS `sta_enseignants`;
 CREATE TABLE IF NOT EXISTS `sta_enseignants` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`user_id`)
@@ -83,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `sta_enseignants` (
 -- Structure de la table `sta_enseignants_ues`
 --
 
+DROP TABLE IF EXISTS `sta_enseignants_ues`;
 CREATE TABLE IF NOT EXISTS `sta_enseignants_ues` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `enseignant_id` int(10) NOT NULL,
@@ -98,10 +103,14 @@ CREATE TABLE IF NOT EXISTS `sta_enseignants_ues` (
 -- Structure de la table `sta_etudiants`
 --
 
+DROP TABLE IF EXISTS `sta_etudiants`;
 CREATE TABLE IF NOT EXISTS `sta_etudiants` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT,
-  `numero` varchar(50) CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`user_id`)
+  `numero` varchar(50) NOT NULL,
+  `remarque` longtext NOT NULL,
+  `dateNaissance` date NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `numero` (`numero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -110,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `sta_etudiants` (
 -- Structure de la table `sta_etudiants_semestres`
 --
 
+DROP TABLE IF EXISTS `sta_etudiants_semestres`;
 CREATE TABLE IF NOT EXISTS `sta_etudiants_semestres` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `moySem` float NOT NULL,
@@ -128,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `sta_etudiants_semestres` (
 -- Structure de la table `sta_etudiants_types_notes_ues`
 --
 
+DROP TABLE IF EXISTS `sta_etudiants_types_notes_ues`;
 CREATE TABLE IF NOT EXISTS `sta_etudiants_types_notes_ues` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `absence` tinyint(1) NOT NULL,
@@ -149,6 +160,7 @@ CREATE TABLE IF NOT EXISTS `sta_etudiants_types_notes_ues` (
 -- Structure de la table `sta_etudiants_ues`
 --
 
+DROP TABLE IF EXISTS `sta_etudiants_ues`;
 CREATE TABLE IF NOT EXISTS `sta_etudiants_ues` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `dispense` tinyint(1) NOT NULL,
@@ -165,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `sta_etudiants_ues` (
 -- Structure de la table `sta_responsables`
 --
 
+DROP TABLE IF EXISTS `sta_responsables`;
 CREATE TABLE IF NOT EXISTS `sta_responsables` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `enseignant_id` int(10) NOT NULL,
@@ -180,6 +193,7 @@ CREATE TABLE IF NOT EXISTS `sta_responsables` (
 -- Structure de la table `sta_semestres`
 --
 
+DROP TABLE IF EXISTS `sta_semestres`;
 CREATE TABLE IF NOT EXISTS `sta_semestres` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `numSem` int(10) NOT NULL,
@@ -195,6 +209,7 @@ CREATE TABLE IF NOT EXISTS `sta_semestres` (
 -- Structure de la table `sta_types_notes`
 --
 
+DROP TABLE IF EXISTS `sta_types_notes`;
 CREATE TABLE IF NOT EXISTS `sta_types_notes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
@@ -208,6 +223,7 @@ CREATE TABLE IF NOT EXISTS `sta_types_notes` (
 -- Structure de la table `sta_types_notes_ues`
 --
 
+DROP TABLE IF EXISTS `sta_types_notes_ues`;
 CREATE TABLE IF NOT EXISTS `sta_types_notes_ues` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `types_note_id` int(10) NOT NULL,
@@ -225,6 +241,7 @@ CREATE TABLE IF NOT EXISTS `sta_types_notes_ues` (
 -- Structure de la table `sta_ues`
 --
 
+DROP TABLE IF EXISTS `sta_ues`;
 CREATE TABLE IF NOT EXISTS `sta_ues` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -243,6 +260,7 @@ CREATE TABLE IF NOT EXISTS `sta_ues` (
 -- Structure de la table `sta_users`
 --
 
+DROP TABLE IF EXISTS `sta_users`;
 CREATE TABLE IF NOT EXISTS `sta_users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) NOT NULL,
@@ -250,7 +268,9 @@ CREATE TABLE IF NOT EXISTS `sta_users` (
   `username` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
   `role` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `username_2` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
