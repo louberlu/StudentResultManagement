@@ -37,10 +37,6 @@
          'EnseignantsUe'
       );
       
-      public $hasOne = array(
-         'User' => array(
-            'dependent' => true
-         )
-      );
+      public $belongsTo = 'User';
    }
 ?>

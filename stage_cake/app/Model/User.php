@@ -17,6 +17,8 @@
  * @version       1.0.0
  */
  
+ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
+ 
  /**
  * Classe du Model User
  *
@@ -51,7 +53,7 @@
          'username' => array(
             'alphaNumeric' => array(
                'rule' => 'alphaNumeric',
-               'required' > true,
+               'required' => true,
                'message' => 'Lettre et nombre seulement'
             ),
             'between' => array(
@@ -64,5 +66,15 @@
             'message' => 'Au moins une longueur de 8 caractères'
          )
       );
+      
+      public function beforeSave($options = array()) {
+         if(isset($this->data[$this->alias]['password']))
+         {
+            $passwordHasher= new SimplePasswordHasher(array('hashType'=>'sha256'));
+            $this->data[$this->alias]['password'] = $passwordHasher->hash($this->data[$this->alias]['password']);
+         }
+         
+         return true;
+      }
    }
 ?>

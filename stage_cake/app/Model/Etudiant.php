@@ -32,11 +32,7 @@
    {
       public $primary_key = 'user_id';
       
-      public $hasOne = array(
-         'User' => array(
-            'dependent' => true
-         )
-      );
+      public $belongsTo = 'User';
       
       public $hasMany = array(
          'EtudiantsUe',

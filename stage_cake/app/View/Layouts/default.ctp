@@ -7,6 +7,7 @@
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
+ * @author        Karen NKILI
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       app.View.Layouts
@@ -38,7 +39,57 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+		   <!-- Ici, commence la partie que j'ai ajouté.-->
+		   <div id="menu">
+		   <?php
+		      //pr($user);
+		      
+		      $listNoAuth = array(
+		         $this->Html->link('Se connecter', array('controller' => 'users', 'action' => 'login'))//A supprimer après car la seule action dispo hors connexion sera celle-ci, donc il n'y aura besoin de la mettre dans la barre de menu
+		      );
+		      
+		      $listAdmin = array(
+		         $this->Html->link('Se déconnecter', array('controller' => 'users', 'action' => 'logout'))
+		      );
+		      
+		      $listEtu = array(
+		         $this->Html->link('Se déconnecter', array('controller' => 'users', 'action' => 'logout'))
+		      );
+		      
+		      $listResp = array(
+		         $this->Html->link('Se déconnecter', array('controller' => 'users', 'action' => 'logout'))
+		      );
+		      
+		      $listEns = array(
+		         $this->Html->link('Se déconnecter', array('controller' => 'users', 'action' => 'logout'))
+		      );
+		      
+		      if($auth)
+		      {
+		         if($user['role'] == 'étudiant')
+		         {
+		            echo $this->Html->nestedList($listEtu);
+		         }
+		         elseif ($user['role'] == 'enseignant')
+		         {
+		            echo $this->Html->nestedList($listEns);
+		         }
+		         elseif ($user['role'] == 'responsable')
+		         {
+		            echo $this->Html->nestedList($listResp);
+		         }
+		         elseif ($user['role'] == 'administrateur')
+		         {
+		            echo $this->Html->nestedList($listAdmin);
+		         }
+		      }
+		      else
+		      {
+		         echo $this->Html->nestedList($listNoAuth);
+		      }
+		   ?>
+		   </div>
+		   <!-- Ici, termine la partie que j'ai ajouté.-->
 		</div>
 		<div id="content">
 
@@ -55,6 +106,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			?>
 			<p>
 				<?php echo $cakeVersion; ?>
+			</p>
+			<p>
+			   <?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?>
 			</p>
 		</div>
 	</div>
