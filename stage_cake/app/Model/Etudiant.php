@@ -30,7 +30,7 @@
  */
    class Etudiant extends AppModel
    {
-      public $primary_key = 'user_id';
+      public $primaryKey = 'user_id';
       
       public $belongsTo = 'User';
       
