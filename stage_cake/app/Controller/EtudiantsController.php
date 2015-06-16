@@ -31,6 +31,12 @@
  * @version       1.0.0
  */
 class EtudiantsController extends AppController {
+   
+   public function beforeFilter(){
+      $this->loadModel('User');
+      $this->loadModel('EtudiantsUe');
+      $this->loadModel('EtudiantsSemestre');
+   }
 
 	public function add()
 	{
@@ -48,14 +54,20 @@ class EtudiantsController extends AppController {
 		}
 	}
 	
-	public function edit()
+	public function edit($id=null)
 	{
-	   
+	   if (!$this->request->is('put'))
+	   {
+	      $this->request->data['Etudiant'] = $this->Etudiant->read(null, $id);
+	      $this->request->data['User'] = $this->User->read(null, $id);
+	      $this->request->data['EtudiantsUe'] = $this->EtudiantsUe->read(null, $id);
+	      $this->request->data['EtudiantsSemestre'] = $this->EtudiantsSemestre->read(null, $id);
+	   }
 	}
 	
 	public function liste()
 	{
-		$result = $this->Personne->find('all');
+		$result = $this->Etudiant->find('all');
 		$this->set('liste_etudiants', $result);
 	}
 }
