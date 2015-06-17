@@ -30,7 +30,7 @@
  */
    class Enseignant extends AppModel
    {
-      public $primary_key = 'user_id';
+      public $primaryKey = 'user_id';
       
       public $hasMany = array(
          'Responsables',
