@@ -31,6 +31,25 @@
    class Annee extends AppModel
    {
       public $belongsTo = 'Semestre';
+      
       public $hasMany = 'AnneesEtudiant';
+      
+      public $validate = array(
+         'annee1' => array(
+            'rule' => 'numeric',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'annee2' => array(
+            'rule' => 'numeric',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'compensable' => array(
+            'rule' => array('boolean'),
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         )
+      );
    }
 ?>

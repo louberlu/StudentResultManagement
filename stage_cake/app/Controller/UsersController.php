@@ -40,22 +40,6 @@ class UsersController extends AppController {
      $this->Auth->allow('add', 'login');
    }
    
-   public function add()
-   {
-      if($this->request->is('post'))
-      {
-         if($this->User->save($this->request->data))
-         {
-            $this->Auth->login();
-            $this->redirect($this->Auth->redirectUrl());
-         }
-         else
-         {
-            $this->Session->setFlash('Erreur dans l\'ajout de l\'utilisateur.');
-         }
-      }
-   }
-   
    public function edit()
    {
       $id = $this->Auth->user('id');

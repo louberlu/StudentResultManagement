@@ -39,5 +39,33 @@
          'EnseignantsUe',
          'EtudiantsUe'
       );
+      
+      public $validate = array(
+         'name' => array(
+            'rule' => array('lengthBetween', 1, 100),
+            'required' => true,
+            'message' => 'Entre 1 et 100 caractères'
+         ),
+         'sup1' => array(
+            'rule' => array('boolean'),
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'sup2' => array(
+            'rule' => array('boolean'),
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'obligatoire' => array(
+            'rule' => array('boolean'),
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'coefUE' => array(
+            'rule' => 'numeric',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         )
+      );
    }
 ?>

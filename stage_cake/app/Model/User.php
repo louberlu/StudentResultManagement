@@ -44,10 +44,12 @@
       public $validate = array(
          'firstname' => array(
             'rule' => array('lengthBetween',1,50),
+            'required' => true,
             'message' => 'Entre 1 et 50 caractères'
          ),
          'lastname' => array(
             'rule' => array('lengthBetween',1,50),
+            'required' => true,
             'message' => 'Entre 1 et 50 caractères'
          ),
          'username' => array(
@@ -63,6 +65,7 @@
          ),
          'password' => array(
             'rule' => array('minLength', '8'),
+            'required' => true,
             'message' => 'Au moins une longueur de 8 caractères'
          )
       );

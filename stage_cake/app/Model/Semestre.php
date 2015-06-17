@@ -36,5 +36,18 @@
          'EtudiantsSemestre',
          'Ue'
       );
+      
+      public $validate = array(
+         'numSem' => array(
+            'rule' => 'numeric',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'compensable' => array(
+            'rule' => array('boolean'),
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         )
+      );
    }
 ?>

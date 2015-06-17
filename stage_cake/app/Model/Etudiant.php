@@ -44,6 +44,7 @@
       public $validate = array(
          'numero' => array(
             'rule' => array('lengthBetween',5,50),
+            'required' => true,
             'message' => 'Entre 5 et 50 caractères'
          ),
          'remarque' => array(
@@ -53,6 +54,7 @@
          ),
          'dateNaissance' => array(
             'rule' => 'date',
+            'required' => true,
             'message' => 'Donnez une date valide'
          )
       );

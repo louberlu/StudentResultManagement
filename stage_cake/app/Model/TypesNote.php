@@ -36,5 +36,18 @@
          'TypesNotesUes',
          'EtudiantsTypesNotesUe'
       );
+      
+      public $validate = array(
+         'name' => array(
+            'rule' => array('lengthBetween', 1, 30),
+            'required' => true,
+            'message' => 'Entre 1 et 30 caractères'
+         ),
+         'sigle' => array(
+            'rule' => array('lengthBetween', 2, 5),
+            'required' => true,
+            'message' => 'Entre 2 et 5 caractères'
+         )
+      );
    }
 ?>

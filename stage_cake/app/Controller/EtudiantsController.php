@@ -56,13 +56,24 @@ class EtudiantsController extends AppController {
 	}
 	
 	public function edit($id=null)
-	{
+	{ //à refaire en fonction de l'action add
 	   if (!$this->request->is('put'))
 	   {
 	      $this->request->data['Etudiant'] = $this->Etudiant->read(null, $id);
 	      $this->request->data['User'] = $this->User->read(null, $id);
 	      $this->request->data['EtudiantsUe'] = $this->EtudiantsUe->read(null, $id);
-	      $this->request->data['EtudiantsSemestre'] = $this->EtudiantsSemestre->read(null, $id);
+	   }
+	   else
+	   {
+	      if ($this->Etudiant->saveAssociated($data, array('deep' => true)))
+	      {
+	         $this->Session->setFlash('Modification des informations de l\'étudiant affectuée.');
+            $this->redirect(array('action'=>'liste'));
+	      }
+	      else
+	      {
+	         $this->Session->setFlash('Erreur dans la modification des informations de l\'étudiant affectuée.');
+	      }
 	   }
 	}
 	
@@ -70,6 +81,20 @@ class EtudiantsController extends AppController {
 	{
 		$result = $this->Etudiant->find('all');
 		$this->set('liste_etudiants', $result);
+	}
+	
+	public function delete($id = null)
+	{
+	   if($this->Etudiant->delete($id) & $this->User->delete($id))
+	   {
+	      $this->Session->setFlash('Etudiant '.$id.' supprimé.');
+	      $this->redirect(array('action'=>'liste'));
+	   }
+	   else
+	   {
+	      $this->Session->setFlash('Etudiant '.$id.' non supprimé.');
+	      $this->redirect(array('action'=>'liste'));
+	   }
 	}
 }
 ?>
