@@ -67,6 +67,9 @@
             'rule' => array('minLength', '8'),
             'required' => true,
             'message' => 'Au moins une longueur de 8 caractères'
+         ),
+         'role' => array(
+            'required' => true
          )
       );
       

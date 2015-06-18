@@ -34,5 +34,18 @@
          'Ue',
          'TypesNote'
       );
+      
+      public $validate = array(
+         'coefNo' => array(
+            'rule' => 'numeric',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'session1' => array(
+            'rule' => 'boolean',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         )
+      );
    }
 ?>

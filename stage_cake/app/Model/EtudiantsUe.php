@@ -34,5 +34,13 @@
          'Ue',
          'Etudiant'
       );
+      
+      public $validate = array(
+         'dispense' => array(
+            'rule' => 'boolean',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         )
+      );
    }
 ?>
