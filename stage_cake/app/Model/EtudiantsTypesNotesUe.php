@@ -35,5 +35,28 @@
          'Etudiant',
          'TypesNote'
       );
+      
+      public $validate = array(
+         'absences' => array(
+            'rule' => 'boolean',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'session1' => array(
+            'rule' => 'boolean',
+            'required' => true,
+            'message' => 'Valeur incorrecte'
+         ),
+         'note' => array(
+            'numeric' => array(
+               'rule' => 'numeric',
+               'message' => 'Valeur incorrecte'
+            ),
+            'between' => array(
+               'rule' => array('lengthBetween', 0, 20),
+               'message' => 'Entre 0 et 20 caractères'
+            )
+         )
+      );
    }
 ?>
