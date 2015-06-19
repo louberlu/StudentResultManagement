@@ -80,5 +80,18 @@ class UsersController extends AppController {
    {
       $this->redirect($this->Auth->logout());
    }
+   
+      
+	public function liste_etu()
+	{
+		$result = $this->User->find('all');
+		$this->set('liste_user', $result);
+	}
+	
+	public function liste_ens()
+	{
+		$result = $this->User->find('all');
+		$this->set('liste_user', $result);
+	}
 }
 ?>
