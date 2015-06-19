@@ -11,7 +11,7 @@
 <?php
 for ($i = 0; $i < count($liste_user); $i ++)
 {
-	if ($liste_user[$i]['User']['role'] == $liste_user[0]['User']['role'])
+	if ($liste_user[$i]['User']['role'] == $liste_user[0]['User']['role']) //ne fonctionne que si le premier utilisateur de la liste d’utilisateurs est un étudiant
 	{
 	echo '<div id="accordeon' . $i . '">';
 	echo '<h3>' . '<a href="#">' . $liste_user[$i]['User']['lastname'] . ' ' . $liste_user[$i]['User']['firstname'] . '</a>' . '</h3>';
