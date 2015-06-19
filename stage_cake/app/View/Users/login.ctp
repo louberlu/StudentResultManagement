@@ -2,11 +2,8 @@
 <?php echo $this->Session->flash('auth'); ?>
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
-        <legend>
-            <?php echo __('Please enter your username and password'); ?>
-        </legend>
-        <?php echo $this->Form->input('username');
-        echo $this->Form->input('password');
+        <?php echo $this->Form->input('username', array('label' => 'Numéro d\'utilisateur : '));
+        echo $this->Form->input('password', array('label' => 'Mot de passe : '));
     ?>
     </fieldset>
 <?php echo $this->Form->end(__('Login')); ?>
