@@ -3,12 +3,12 @@
     <fieldset>
         <legend><?php echo __('Ajouter un utilisateur'); ?></legend>
         <?php 
-			echo $this->Form->input('lastname');
-			echo $this->Form->input('firstname');
-			echo $this->Form->input('username');
-			echo $this->Form->input('password');
+			echo $this->Form->input('lastname', array('label' => 'Nom'));
+			echo $this->Form->input('firstname', array('label' => 'Prénom'));
+			echo $this->Form->input('username', array('label' => 'Pseudo'));
+			echo $this->Form->input('password', array('label' => 'Mot de passe'));
 			echo $this->Form->input('role', array(
-				'options' => array('enseignant' => 'Enseignant', 'étudiant' => 'Etudiant')
+				'options' => array('administrateur' => 'Administrateur', 'enseignant' => 'Enseignant', 'étudiant' => 'Etudiant', 'responsable' => 'Responsable')
 			));
 		?>
     </fieldset>
